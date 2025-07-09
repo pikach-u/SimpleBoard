@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>🔑 로그인</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body class="container">
+<h1>🔑 로그인</h1>
+<div th:if="${error}" class="error" th:text="${error}"></div>
+<form th:action="@{/login}"
+      th:object="${loginDto}"
+      method="post"
+      class="form-container">
+    <label>
+        아이디:
+        <input type="text" th:field="*{username}"/>
+    </label>
+    <div th:if="${#fields.hasErrors('username')}"
+         th:errors="*{username}"></div>
+    <label>
+        비밀번호:
+        <input type="password" th:field="*{password}"/>
+    </label>
+    <div th:if="${#fields.hasErrors('password')}"
+         th:errors="*{password}"></div>
+    <button type="submit">로그인</button>
+    <a th:href="@{/signup}" class="cancel">회원가입</a>
+</form>
+</body>
+</html>
