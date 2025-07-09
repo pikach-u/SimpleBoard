@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>📋 게시판</title>
+    <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+<h1>📋 게시글 목록</h1>
+<p>
+    <a th:href="@{/posts/add}">
+        <button>➕ 새 글</button>
+    </a>
+    <a th:href="@{/logout}">
+        <button class="cancel">로그아웃</button>
+    </a>
+</p>
+<ul class="post-list">
+    <li th:each="post: ${posts}">
+        <div class="post">
+            <h2>
+                <a th:href="@{'/posts/' + ${post.id}}" th:text="${post.title}"></a>
+            </h2>
+            <!--            무의미한 div는 디자인 기능인 경우가 많음-->
+            <p>
+                작성자:
+                <span th:text="${post.author.username}"></span>
+                |
+                <span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
+            </p>
+        </div>
+    </li>
+</ul>
+</body>
+</html>
