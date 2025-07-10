@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class User {
-    @Id
+    @Id     // 기본 KEY
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
